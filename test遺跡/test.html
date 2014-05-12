@@ -1,0 +1,112 @@
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		#textareas, #pars {
+			position: absolute;
+			top: 100px;
+			left: 100px;
+		}
+		canvas {
+			position: absolute;
+			top: 100px;
+			left: 100px;
+		}
+		#text {
+			position: absolute;
+			font-size: 18px;
+		}
+		.par {
+			position: absolute;
+			font-size: 18px;
+			word-wrap: break-word;
+		}
+	</style>
+	<script type="text/javascript" src='canvas.js'></script>
+	<script type="text/javascript">
+		var drawing;
+		var canvas, ctx;
+		var mem;
+		var initX, initY;
+		var cur = 0;
+		function hi() {
+			var canvas = document.getElementById('myCanvas');
+			canvas.height = 600;
+			canvas.width = 500;
+			var ctx = canvas.getContext('2d');
+			drawing = false;
+
+			ctx.fillStyle = 'rgb(150, 120, 90)';
+			ctx.fillRect(0, 0, 500, 600);
+			canvas.onmousedown = function(ev) {
+				var p = getPos(ev, canvas);
+				initX = p.x;
+				initY = p.y;
+				drawing = true;
+				mem = ctx.getImageData(0, 0, 500, 600);
+			}
+			canvas.onmousemove = function(ev) {
+				if(drawing) {
+					var p = getPos(ev, canvas)
+					ctx.putImageData(mem, 0, 0);
+					ctx.strokeStyle = 'white';
+					ctx.strokeRect(initX, initY, p.x-initX, p.y-initY);
+				}
+			}
+			canvas.onmouseup = function(ev) {
+				drawing = false;
+				var p = getPos(ev, canvas)
+				ctx.putImageData(mem, 0, 0);
+				showTextBlock(p.x, p.y, initX, initY);
+			}
+			canvas.onmouseout = function() {
+				drawing = false;
+				ctx.putImageData(mem, 0, 0);
+			}
+		}
+		function min(a, b) {return a>b ? b : a;}
+		function abs(a) {return a>0 ? a : -a;}
+		function showTextBlock(x1, y1, x2, y2) {
+			var x, y, w, h;
+			x = min(x1, x2);
+			y = min(y1, y2);
+			w = abs(x1-x2);
+			h = abs(y1-y2);
+			var div = document.getElementById('textareas');
+			div.innerHTML = "<textarea id='text' onblur='hide(this,"+x+","+y+","+w+","+h+")'></textarea>";
+			var text = document.getElementById('text');
+			text.style.left = x;
+			text.style.top = y;
+			text.style.width = w;
+			text.style.height = h;
+			text.focus();
+		}
+		function hide(t, x, y, w, h) {
+			var s = t.value;
+			if(s.search(/\S/) == -1) return;
+			var textareas = document.getElementById('textareas');
+			textareas.innerHTML = '';
+			s = escape(s);
+			var pars = document.getElementById('pars');
+			pars.innerHTML += "<p class='par' id='par"+cur+"'>"+s+"</p>";
+			var par = document.getElementById('par'+(cur++));
+			par.style.left = x;
+			par.style.top = y;
+			par.style.width = w;
+			par.style.height = h;
+		}
+		function escape(s) {
+			s = s.replace(/ /g, '&nbsp;');
+			s = s.replace(/</g, '&lt;');
+			s = s.replace(/>/g, '&gt;');
+			s = s.replace(/\n/g, '</br>');
+			return s;
+		}
+	</script>
+</head>
+<body onload='hi()'>
+	<canvas id='myCanvas'></canvas>
+	<div id='textareas'></div>
+	<div id='pars'></div>
+</body>
+</html>

@@ -1,0 +1,13 @@
+#background, #draw {
+	border-radius: 5px;
+	position: absolute;
+	top: 80px;
+}
+
+#draw {
+	z-index: 5;
+	cursor: help;
+}
+#fileIn {
+	display: none;
+}
