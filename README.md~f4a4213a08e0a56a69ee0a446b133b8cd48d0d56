@@ -1,0 +1,58 @@
+<html>
+<head>
+	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta>
+	<title>README</title>
+</head>
+<body>
+	<h1>開發日誌 </h1>
+	<h2>2014.5.12上guthub，普天同慶</h2>
+	<ul>
+		<li>近期目標:</li>
+		<li>十步內步驟紀錄</li>
+		<ul>
+			<li>textBlock新舊分離:loadText()、createText()?</li>
+			<li>textBlock回歸普通array?</li>
+			<li>寫新的class</li>
+		</ul>
+		<li>Layer的順序問題</li>
+		<ul>
+			<li>簡單方案:改linklist，layer一空就消滅掉</li>
+			<li>困難方案:擴散式重整整個board?不知道會不會卡好--->一定卡好啦</li>
+		</ul>
+		<li>UI</li>
+		<ul>
+			<li>現在的mode</li>
+			<li>現在的tool</li>
+			<li>現在的page</li>
+			<li>希望能盡量css解決</li>
+		</ul>
+    
+	<li>遠程目標
+		<li>上server-->資料庫穩定度足以用來寫開發日誌!</li>
+		<ul>
+			<li>學node.js?</li>
+			<li>權限設定要規劃好(全仿臉書?)</li>
+			<li>如何get一個note</li>
+			<ul>
+				<li>不顯示board，只顯示boardId</li>
+				<li>如何顯示[所有回覆者]</li>
+			</ul>
+			<li>note旁邊那些有的沒的資訊</li>
+			<ul>
+				<li>userId
+				<li>timestamp
+				<li>在哪個board
+				<li>回覆誰
+				<li>有哪些人[回覆]
+			</ul>
+			<li>[回覆]一個note
+		</ul>
+		<li>增加工具</li>
+		<ul>
+			<li>調色盤</il>
+			<li>textbox鏈結</il>
+		</ul>
+		<li>直接畫在牆上(權限要注意)</ul>
+	</ul>
+</body>
+</html>
