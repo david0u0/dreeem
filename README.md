@@ -3,9 +3,8 @@
 	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta>
 	<title>README</title>
 </head>
-<body>
-	<h1>開發日誌 </h1>
-	<h2>2014.5.12上github，普天同慶</h2>
+<body style="font-family: '微軟正黑體'"> 
+	<p style='float:right'>游無敵榮譽出品 Created By WoodyYo</p>
 	<ul>
 		<li>近期目標:
 			<ul>
@@ -54,12 +53,15 @@
 							</ul>
 						</li>
 						<li>[回覆]一個note</li>
+						<li>以發文者/轉錄者為導向，限制MB數</li>
+						<li>轉錄功能--共用同一份檔案YA~</li>
 					</ul>
 				</li>
 				<li>增加工具
 					<ul>
 						<li>調色盤</li>
-						<li>textbox鏈結</li>
+						<li>textblock鏈結</li>
+						<li>可移動textblock</li>
 					</ul>
 				</li>
 				<li>直接畫在牆上(權限要注意)</li>

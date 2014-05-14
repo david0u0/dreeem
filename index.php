@@ -43,7 +43,6 @@
 <script type="text/javascript" src='canvas.js'></script>
 <body onload='init()'>
 	<?php echoHeader(); ?>
-
 	<div id='edit' class='shield'>
 		<canvas id='note'></canvas>
 		<div id='textareaDiv'></div>

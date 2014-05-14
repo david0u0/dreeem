@@ -129,11 +129,10 @@ function saveNote() {
 	editnote.note.data.onload = function() {
 		editnote.miniCtx.drawImage(editnote.note.data, 0, 0, editnote.note.miniW(), editnote.note.miniH());
 		for(var i = a.length-1; i >= 0; i--) a[i].save();
-		editnote.note.mini.src = editnote.miniC.toDataURL();
-	}
-	editnote.note.mini.onload = function() {
-		addNote(editnote.note, editnote.isNew);
-		closeNote();
+		editnote.note.setMini(editnote.miniC, function() {
+			addNote(editnote.note, editnote.isNew);
+			closeNote();
+		});
 	}
 	var a = editnote.textareas.childNodes;
 	editnote.note.data.src = editnote.canvas.toDataURL();
@@ -165,16 +164,10 @@ function createText(x, y, w, h, textBlock) {
 			if(ta.value.search(/\S/) == -1) ta.style.display = 'none';
 		}
 		ta.save = function() {
-			var ratio = editnote.width/editnote.note.miniW();
 			if(ta.value.search(/\S/) == -1) textBlock.destroy();
 			else {
 				textBlock.text = ta.value;
 				textBlock.fontSize = parseInt(ta.style.fontSize);
-				editnote.miniCtx.font = textBlock.fontSize/ratio+"px 微軟正黑體";
-				var a = textBlock.split();
-				for(var i = 0; i < a.length; i++) {
-					editnote.miniCtx.fillText(a[i], textBlock.x/ratio, textBlock.y/ratio+textBlock.fontSize/ratio*(i+1));
-				}
 			}
 		}
 		ta.onfocus = function() {editnote.curText = ta;};

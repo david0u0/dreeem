@@ -91,7 +91,11 @@ function init() {
 				var note = new Note(p.x, p.y);
 				edit(note, true);
 			}
-			else if(mode == 2 && curImg) {
+			else if(mode == 2) {
+				if(!curImg) {
+					alert('請選擇圖片');
+					return;
+				}
 				if(!drawing) {
 					var p = getPos(ev, bg);
 					drawing = true;
@@ -167,14 +171,13 @@ function addNote(note, isNew){
 	}
 }
 function setMode(i) {
-	var tmp = document.getElementById('fileIn');
-	tmp.style.display = 'none';
+	ctx.putImageData(mem, 0, 0);
 	drawing = false;
 	mode = i;
 	if(i == 0) 	bg.style.cursor = 'help';
 	else if(i == 1) bg.style.cursor = 'pointer';
 	else if(i == 2) {
-		tmp.style.display = 'block';
+		document.getElementById('fileIn').click();
 		bg.style.cursor = 'crosshair';
 	}
 	else if(i == 3) bg.style.cursor = 'move';

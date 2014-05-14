@@ -63,7 +63,25 @@ function Sticker(x, y) {
 	this.pick = function() {
 		this.pre.next = this.next;
 		if(this.next) this.next.pre = this.pre;
-		this.next = null;	
+		this.next = null;
+	}
+	this.setMini = function(canvas, fx) {
+		canvas.width = this.miniW();
+		canvas.height = this.miniH();
+		var ctx = canvas.getContext('2d');
+		ctx.drawImage(this.data, 0, 0, this.miniW(), this.miniH());
+		var cur = this.textHead.next;
+		var ratio = this.width()/this.miniW();
+		while(cur) {
+			ctx.font = cur.fontSize/ratio+"px 微軟正黑體";
+			var a = cur.split();
+			for(var i = 0; i < a.length; i++) {
+				editnote.miniCtx.fillText(a[i], cur.x/ratio, cur.y/ratio+cur.fontSize/ratio*(i+1));
+			}
+			cur = cur.next;
+		}
+		this.mini.onload = fx;
+		this.mini.src = canvas.toDataURL();
 	}
 }
 function Photo(x, y, miniW, miniH) {
